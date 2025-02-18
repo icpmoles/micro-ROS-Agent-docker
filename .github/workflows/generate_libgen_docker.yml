@@ -15,8 +15,6 @@ jobs:
         include:
           - ros_distribution: humble
             branch: humble
-          - ros_distribution: iron
-            branch: iron
           - ros_distribution: rolling
             branch: rolling
           - ros_distribution: jazzy
