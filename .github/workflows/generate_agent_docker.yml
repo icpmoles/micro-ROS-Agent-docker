@@ -15,18 +15,22 @@ jobs:
         include:
           - ros_distribution: humble
             branch: humble
+          - ros_distribution: jazzy
+            branch: jazzy
+          - ros_distribution: kilted
+            branch: kilted
           - ros_distribution: rolling
             branch: rolling
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -35,5 +39,5 @@ jobs:
         with:
           context: ./micro-ROS-Agent/
           push: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: microros/micro-ros-agent:${{ matrix.ros_distribution }}
