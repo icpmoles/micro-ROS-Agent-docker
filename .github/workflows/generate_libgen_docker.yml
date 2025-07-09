@@ -13,14 +13,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - ros_distribution: humble
-            branch: humble
-          - ros_distribution: jazzy
-            branch: jazzy
-          - ros_distribution: kilted
-            branch: kilted
-          - ros_distribution: rolling
-            branch: rolling
+          - ros_distribution: foxy
+            branch: foxy
+          - ros_distribution: galactic
+            branch: galactic
+          - ros_distribution: iron
+            branch: iron
     steps:
       - uses: actions/checkout@v4
         with:
