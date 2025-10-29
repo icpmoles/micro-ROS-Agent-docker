@@ -52,7 +52,7 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: |
-            icpmoles/micro_frankenstein_monster
+            icpmoles/micro_frankenstein
             ghcr.io/${{ github.repository }}
       
       # This step uses the `docker/build-push-action` action to build the image, based on your repository's `Dockerfile`. If the build succeeds, it pushes the image to GitHub Packages.
