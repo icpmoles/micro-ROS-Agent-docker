@@ -19,7 +19,7 @@ jobs:
   build-and-push-image-ghcr:
     strategy:
       matrix:
-        REGISTRY: ["ghcr.io", "docker.io"]
+        REGISTRY: ["ghcr.io"]
     runs-on: ubuntu-latest
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
