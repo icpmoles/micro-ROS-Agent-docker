@@ -10,12 +10,15 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh \
 
 FROM ros:jazzy-ros-core
 
+ARG USERNAME=ros2 
+ENV COLCON_WS_PATH=/home/$USERNAME/tesi/mostro
+
 COPY --from=micro-ros-agent-builder /uros_ws /uros_ws
 
 WORKDIR /uros_ws
 
 # Disable shared memory
-COPY disable_fastdds_shm.xml disable_fastdds_shm_localhost_only.xml /tmp/
+#COPY disable_fastdds_shm.xml disable_fastdds_shm_localhost_only.xml /tmp/
 
 ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 ENV MICROROS_DISABLE_SHM=1
@@ -23,7 +26,9 @@ ENV MICROROS_DISABLE_SHM=1
 RUN echo ". /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 RUN echo ". /uros_ws/install/setup.bash" >> ~/.bashrc
 
+WORKDIR $COLCON_WS_PATH
 # setup entrypoint
-COPY ./micro-ros_entrypoint.sh /
-ENTRYPOINT ["/bin/sh", "/micro-ros_entrypoint.sh"]
+COPY ./scripts_ws $COLCON_WS_PATH/scripts_ws
+
+ENTRYPOINT ["/bin/sh","./scripts_ws/micro-ros_entrypoint.sh"]
 CMD ["--help"]
