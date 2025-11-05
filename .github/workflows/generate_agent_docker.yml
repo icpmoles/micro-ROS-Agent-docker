@@ -52,7 +52,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+          images: ${{ env.IMAGE_NAME }}:latest
 
       - name: Build and push Docker image
         id: push
@@ -62,4 +62,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          labels: ${{ steps.meta.outputs.labels }}    
