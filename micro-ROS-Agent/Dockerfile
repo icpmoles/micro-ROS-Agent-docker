@@ -22,6 +22,14 @@ COPY ./dds_config $COLCON_WS_PATH/dds_config
 
 ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 #ENV MICROROS_DISABLE_SHM=1
+RUN apt-get update && \
+    apt-get install -y \
+    ros-${ROS_DISTRO}-tracetools \
+    ros-${ROS_DISTRO}-ros2trace \
+    ros-${ROS_DISTRO}-tracetools-analysis \ 
+    ros-${ROS_DISTRO}-performance-test && \
+    rm -rf /var/lib/apt/lists/*
+
 
 RUN echo ". /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 RUN echo ". /uros_ws/install/setup.bash" >> ~/.bashrc
