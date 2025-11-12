@@ -10,6 +10,7 @@ RUN . /opt/ros/$ROS_DISTRO/setup.sh \
 
 FROM ros:jazzy-ros-core
 
+ARG DEBIAN_FRONTEND=noninteractive
 ARG USERNAME=ros2 
 ENV COLCON_WS_PATH=/home/$USERNAME/tesi/mostro
 
@@ -26,7 +27,6 @@ RUN apt-get update && \
     apt-get install -y \
     ros-${ROS_DISTRO}-tracetools \
     ros-${ROS_DISTRO}-ros2trace \
-    ros-${ROS_DISTRO}-tracetools-analysis \ 
     ros-${ROS_DISTRO}-performance-test && \
     rm -rf /var/lib/apt/lists/*
 
